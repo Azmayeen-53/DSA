@@ -17,6 +17,23 @@ struct node *Linked_list_circular(struct node *head)
         ptr = ptr->next;
 
     } while (ptr != head);
+    return head;
+}
+
+struct node *insertion(struct node *head, int data)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = data;
+    struct node *p = head;
+
+    while (p->next != head)
+    {
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = head;
+    head = ptr;
+    return head;
 }
 int main()
 {
@@ -38,5 +55,6 @@ int main()
     SECOND->data = 213;
     SECOND->next = head;
 
+    head = insertion(head, 56);
     head = Linked_list_circular(head);
 }
